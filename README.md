@@ -9,7 +9,7 @@
 - node-exporter - мониторим ифраструктурные метрики самих хостов (CPU, Memory, File System)
 - cadvisor - служит для мониторинга Docker контейнеров.
 
-Prometheus выстуавет как DataSource собираем метрик нашими экспортерами. Так же содержит в себе файл конфигураций prometheus/prometheus.yml  c job и target, alert rules. 
+Prometheus выступает как DataSource собираем метрик нашими экспортерами. Так же содержит в себе файл конфигураций prometheus/prometheus.yml  c job и target, alert rules. 
 
 ### Установка компонентов происходит путем скачивания репозитория https://github.com/4Anchor/sprint3.git
 
@@ -18,7 +18,7 @@ Prometheus выстуавет как DataSource собираем метрик н
 ```
 docker-compose up -d
 ```
-Смотрим все ли поднялось ине рестартуют ли контейнеры с ошибками
+Смотрим все ли поднялось и не падают ли контейнеры с ошибками
 
 ```
 docker-compose ps
@@ -42,15 +42,15 @@ Alert Rules можно просмотреть на странице Prometheus :
  ```
 Результаты аллертов можно будет увидеть на скриншотах прилагаемых к данному спринту. (AlertRule.png, ResolveRule.png)
 
-### На этом этам мониторинга завершен, приступаем к реализации системы логирования.
+### На этом этап мониторинга завершен, приступаем к реализации системы логирования.
 
-### Логирование реализованно по средствам использование Grafa Stack Loki + Promtail 
+### Логирование реализовано по средствам использование Loki + Promtail 
 
 1. Для сбора логов с Kubernetes cluster нам потребуется установить и настроить агента Promtail:
 
-Ссылка на инструкция по инсталяции прилагаю взята из официальной инструкции https://grafana.com/docs/loki/latest/clients/promtail/installation/
+Ссылка на инструкция по инсталляции прилагаю взята из официальной инструкции https://grafana.com/docs/loki/latest/clients/promtail/installation/
 
-Деплой в кластер производился рекомендованым способом DaemonSet (recommended). Манифест к данному проекту находится по ссылке https://github.com/4Anchor/components.git
+Деплой в кластер производился рекомендованным способом DaemonSet (recommended). Манифест к данному проекту находится по ссылке https://github.com/4Anchor/components.git
  
 После скачивания репозитория требуется выполнить команды:
 Создать namespace monitoring
@@ -62,7 +62,7 @@ kubectl create namespace monitoring
 ```
 kubectl apply -f promtail.yaml -n monitoring
 ```
-Так же рекомндуется создать отдельную Cluster Role promtail и привязать ее:
+Так же рекомендуется создать отдельную Cluster Role promtail и привязать ее:
 
 ```
 kubectl apply -f promtail-cluster-role.yaml
