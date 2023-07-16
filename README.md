@@ -71,9 +71,10 @@ kubectl apply -f promtail-cluster-rolebinding.yaml
 ```
 kubectl get pods -n monitoring
 ```
+```
 NAME                       READY   STATUS    RESTARTS       AGE
 promtail-daemonset-b7bgc   1/1     Running   0              18h
-
+```
 ```
 kubectl logs имя_пода -n monitoring
 ```
