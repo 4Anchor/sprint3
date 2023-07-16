@@ -1,0 +1,28 @@
+groups:
+  - name: blackbox_alert_rules
+    rules:
+      - alert: WebsiteDown
+        expr: up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Website {{ $labels.instance }} is down"
+          description: "The website {{ $labels.instance }} is not responding to Blackbox Exporter probes."
+
+      - alert: HostUnreachable
+        expr: blackbox_probe_success{probe="icmp"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Host {{ $labels.instance }} is unreachable"
+          description: "The host {{ $labels.instance }} is not reachable via ICMP."
+
+      - alert: blackbox_probe_http_failure_probe
+        expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          description: "HTTP status code website is not 200-399\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }} and probe failed"

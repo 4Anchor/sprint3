@@ -1,0 +1,21 @@
+global:                                                                                                                                                                                                            
+  resolve_timeout: 5m                                                                                                                                                                                              
+                                                                                                                                                                                                                   
+route:                                                                                                                                                                                                             
+  group_by: ['alertname']                                                                                                                                                                                          
+  group_wait: 10s                                                                                                                                                                                                  
+  group_interval: 5m                                                                                                                                                                                               
+  repeat_interval: 3h                                                                                                                                                                                              
+  receiver: 'telegram'                                                                                                                                                                                             
+  routes:                                                                                                                                                                                                          
+    - receiver: telegram                                                                                                                                                                                           
+      match:                                                                                                                                                                                                       
+        severity: critical                                                                                                                                                                                         
+                                                                                                                                                                                                                   
+                                                                                                                                                                                                                   
+receivers:                                                                                                                                                                                                         
+  - name: 'telegram'                                                                                                                                                                                               
+    telegram_configs:                                                                                                                                                                                              
+    - api_url: 'https://api.telegram.org'
+      bot_token: '2083888437:AAFCdl6Mve7tRfXDUNsFVAfDJWmJ_QCcvUw'                                                                                                                                                    
+      chat_id: -550836351                                      

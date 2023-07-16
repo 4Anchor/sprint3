@@ -1,0 +1,11 @@
+groups:
+- name: rules
+  rules:
+  - alert: node_down
+    expr: sum by (instance) (up == 0)
+    for: 3m
+    labels:
+      severity: critical
+    annotations:
+      description: "Instance {{ $labels.host }} down\n {{ $labels.host }} of job {{ $labels.instance }} has been down for more than 3 minutes." 
+
